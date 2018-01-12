@@ -8,18 +8,24 @@ require __DIR__ . '/../vendor/autoload.php';
 
 session_start();
 
-$factory = Factory();
+$factory = new Factory();
 
 $app = new Slim\App();
 
 $app->get('/', function(Request $request, Response $response, array $args) use ($factory) {
-    return $response->write('');
+    return $response->write($factory->createLoginPage()->getTemplate());
 });
 
 $app->post('/login', function(Request $request, Response $response, array $args) use ($factory) {
 
     $data = $request->getParsedBody();
     $username = filter_var($data['username'], FILTER_SANITIZE_STRING);
+
+    $result = $factory->createPasswordChecker()->check($username);
+
+    if (!$result) {
+        return $response->withRedirect('/');
+    }
 
     $_SESSION['loggedin'] = true;
 
@@ -38,5 +44,3 @@ $app->get('/{name}', function(Request $request, Response $response, array $args)
 });
 
 $app->run();
-
-session_destroy();

@@ -16,7 +16,7 @@ class HtmlTemplate
         return new self($filePath);
     }
 
-    public function getTemplate(string $name): string
+    public function getTemplate(string $name = ''): string
     {
         $template = file_get_contents($this->filePath);
         return str_replace('%name%', $name, $template);

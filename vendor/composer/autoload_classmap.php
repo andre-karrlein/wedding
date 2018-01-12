@@ -548,8 +548,10 @@ return array(
     'TheSeer\\Tokenizer\\TokenCollectionException' => $vendorDir . '/theseer/tokenizer/src/TokenCollectionException.php',
     'TheSeer\\Tokenizer\\Tokenizer' => $vendorDir . '/theseer/tokenizer/src/Tokenizer.php',
     'TheSeer\\Tokenizer\\XMLSerializer' => $vendorDir . '/theseer/tokenizer/src/XMLSerializer.php',
-    'ak1\\karrlein\\FactoryTest' => $baseDir . '/tests/FactoryTest.php',
     'ak1\\karrlein\\HtmlTemplateTest' => $baseDir . '/tests/HtmlTemplateTest.php',
     'ak1\\wedding\\Factory' => $baseDir . '/src/Factory.php',
+    'ak1\\wedding\\FactoryTest' => $baseDir . '/tests/FactoryTest.php',
     'ak1\\wedding\\HtmlTemplate' => $baseDir . '/src/HtmlTemplate.php',
+    'ak1\\wedding\\PasswordChecker' => $baseDir . '/src/PasswordChecker.php',
+    'ak1\\wedding\\PasswordCheckerTest' => $baseDir . '/tests/PasswordCheckerTest.php',
 );

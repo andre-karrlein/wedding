@@ -10,7 +10,7 @@ class HtmlTemplateTest extends TestCase
     {
         $template = HtmlTemplate::fromFile(__DIR__ . '/../html/Index.html');
 
-        $actual = $template->getTemplate();
+        $actual = $template->getTemplate('%name%');
         $expected = file_get_contents(__DIR__ . '/../html/Index.html');
 
         $this->assertEquals($expected, $actual);

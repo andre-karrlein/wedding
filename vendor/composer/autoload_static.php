@@ -642,10 +642,12 @@ class ComposerStaticInitd0cdaa0c2414f34354c6392a82cea4fc
         'TheSeer\\Tokenizer\\TokenCollectionException' => __DIR__ . '/..' . '/theseer/tokenizer/src/TokenCollectionException.php',
         'TheSeer\\Tokenizer\\Tokenizer' => __DIR__ . '/..' . '/theseer/tokenizer/src/Tokenizer.php',
         'TheSeer\\Tokenizer\\XMLSerializer' => __DIR__ . '/..' . '/theseer/tokenizer/src/XMLSerializer.php',
-        'ak1\\karrlein\\FactoryTest' => __DIR__ . '/../..' . '/tests/FactoryTest.php',
         'ak1\\karrlein\\HtmlTemplateTest' => __DIR__ . '/../..' . '/tests/HtmlTemplateTest.php',
         'ak1\\wedding\\Factory' => __DIR__ . '/../..' . '/src/Factory.php',
+        'ak1\\wedding\\FactoryTest' => __DIR__ . '/../..' . '/tests/FactoryTest.php',
         'ak1\\wedding\\HtmlTemplate' => __DIR__ . '/../..' . '/src/HtmlTemplate.php',
+        'ak1\\wedding\\PasswordChecker' => __DIR__ . '/../..' . '/src/PasswordChecker.php',
+        'ak1\\wedding\\PasswordCheckerTest' => __DIR__ . '/../..' . '/tests/PasswordCheckerTest.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
