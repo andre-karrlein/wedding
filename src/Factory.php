@@ -14,6 +14,16 @@ class Factory
         return HtmlTemplate::fromFile(__DIR__ . '/../html/Login.html');
     }
 
+    public function createMailBuilder(): MailBuilder
+    {
+        return new MailBuilder();
+    }
+
+    public function createMailer(): Mailer
+    {
+        return new Mailer();
+    }
+
     public function createLoginHandler(): LoginHandler
     {
         return new LoginHandler(

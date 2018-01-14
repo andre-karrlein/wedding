@@ -40,7 +40,9 @@ $app->post('/send', function(Request $request, Response $response, array $args) 
         return $response->withRedirect('/');
     }
 
-    //do something with mails
+    $data = $request->getParsedBody();
+
+    // write result to file
 
     $route = '/' . $_SESSION['user'];
 
