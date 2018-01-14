@@ -14,13 +14,31 @@ class Factory
         return HtmlTemplate::fromFile(__DIR__ . '/../html/Login.html');
     }
 
-    public function createPasswordChecker(): PasswordChecker
+    public function createLoginHandler(): LoginHandler
     {
-        return new PasswordChecker($this->testData());
+        return new LoginHandler(
+            $this->createPasswordChecker(),
+            $this->createUsernameMapper()
+        );
     }
 
-    private function testData(): array
+    private function createPasswordChecker(): PasswordChecker
     {
-        return ['Veronika', 'Andre'];
+        return new PasswordChecker($this->createPasswordFileReader());
+    }
+
+    private function createPasswordFileReader(): PasswordFileReader
+    {
+        return new PasswordFileReader(__DIR__ . '/../passwords');
+    }
+
+    private function createUsernameMapper(): UsernameMapper
+    {
+        return new UsernameMapper($this->createUsernameFileReader(), $this->createPasswordFileReader());
+    }
+
+    private function createUsernameFileReader(): UsernameFileReader
+    {
+        return new UsernameFileReader(__DIR__ . '/../usernames');
     }
 }

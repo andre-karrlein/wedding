@@ -5,17 +5,17 @@ namespace ak1\wedding;
 class PasswordChecker
 {
     /**
-     * @var array
+     * @var PasswordFileReader
      */
-    private $dataArray;
+    private $fileReader;
 
-    public function __construct(array $dataArray)
+    public function __construct(PasswordFileReader $fileReader)
     {
-        $this->dataArray = $dataArray;
+        $this->fileReader = $fileReader;
     }
 
     public function check(string $password): bool
     {
-        return in_array($password, $this->dataArray);
+        return in_array($password, $this->fileReader->getPasswordArray());
     }
 }

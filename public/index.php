@@ -19,17 +19,30 @@ $app->get('/', function(Request $request, Response $response, array $args) use (
 $app->post('/login', function(Request $request, Response $response, array $args) use ($factory) {
 
     $data = $request->getParsedBody();
-    $username = filter_var($data['username'], FILTER_SANITIZE_STRING);
+    $password = filter_var($data['username'], FILTER_SANITIZE_STRING);
 
-    $result = $factory->createPasswordChecker()->check($username);
+    $username = $factory->createLoginHandler()->login($password);
 
-    if (!$result) {
+    if ($username === '') {
         return $response->withRedirect('/');
     }
 
     $_SESSION['loggedin'] = true;
+    $_SESSION['user'] = $username;
 
     $route = '/' . $username;
+
+    return $response->withRedirect($route);
+});
+
+$app->post('/send', function(Request $request, Response $response, array $args) use ($factory) {
+    if (!$_SESSION['loggedin']) {
+        return $response->withRedirect('/');
+    }
+
+    //do something with mails
+
+    $route = '/' . $_SESSION['user'];
 
     return $response->withRedirect($route);
 });
