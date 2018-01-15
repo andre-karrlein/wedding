@@ -14,22 +14,22 @@ class Factory
         return HtmlTemplate::fromFile(__DIR__ . '/../html/Login.html');
     }
 
-    public function createMailBuilder(): MailBuilder
-    {
-        return new MailBuilder();
-    }
-
-    public function createMailer(): Mailer
-    {
-        return new Mailer();
-    }
-
     public function createLoginHandler(): LoginHandler
     {
         return new LoginHandler(
             $this->createPasswordChecker(),
             $this->createUsernameMapper()
         );
+    }
+
+    public function createDataSaver(): DataSaver
+    {
+        return new DataSaver($this->createFileWriter());
+    }
+
+    private function createFileWriter(): FileWriter
+    {
+        return new FileWriter(__DIR__ . '/../saved');
     }
 
     private function createPasswordChecker(): PasswordChecker

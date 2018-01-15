@@ -35,14 +35,14 @@ $app->post('/login', function(Request $request, Response $response, array $args)
     return $response->withRedirect($route);
 });
 
-$app->post('/send', function(Request $request, Response $response, array $args) use ($factory) {
+$app->post('/save', function(Request $request, Response $response, array $args) use ($factory) {
     if (!$_SESSION['loggedin']) {
         return $response->withRedirect('/');
     }
 
     $data = $request->getParsedBody();
 
-    // write result to file
+    $factory->createDataSaver()->save($data);
 
     $route = '/' . $_SESSION['user'];
 
