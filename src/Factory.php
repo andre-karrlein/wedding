@@ -27,6 +27,16 @@ class Factory
         return new DataSaver($this->createFileWriter());
     }
 
+    public function createAdminHandler(): AdminHandler
+    {
+        return new AdminHandler($this->createGuestDataReader());
+    }
+
+    private function createGuestDataReader(): GuestFileReader
+    {
+        return new GuestFileReader(__DIR__ . '/../saved');
+    }
+
     private function createFileWriter(): FileWriter
     {
         return new FileWriter(__DIR__ . '/../saved');

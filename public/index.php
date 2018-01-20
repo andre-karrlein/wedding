@@ -17,9 +17,10 @@ $app->get('/', function(Request $request, Response $response, array $args) use (
 });
 
 $app->get('/admin', function(Request $request, Response $response, array $args) use ($factory) {
-    // admin stuff
 
-    return $response->write('');
+    $result = $factory->createAdminHandler()->showResults();
+
+    return $response->write($result);
 });
 
 $app->post('/login', function(Request $request, Response $response, array $args) use ($factory) {
