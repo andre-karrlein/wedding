@@ -16,6 +16,12 @@ $app->get('/', function(Request $request, Response $response, array $args) use (
     return $response->write($factory->createLoginPage()->getTemplate());
 });
 
+$app->get('/admin', function(Request $request, Response $response, array $args) use ($factory) {
+    // admin stuff
+
+    return $response->write('');
+});
+
 $app->post('/login', function(Request $request, Response $response, array $args) use ($factory) {
 
     $data = $request->getParsedBody();
@@ -30,7 +36,7 @@ $app->post('/login', function(Request $request, Response $response, array $args)
     $_SESSION['loggedin'] = true;
     $_SESSION['user'] = $username;
 
-    $route = '/' . $username;
+    $route = '/guest/' . $username;
 
     return $response->withRedirect($route);
 });
@@ -44,12 +50,12 @@ $app->post('/save', function(Request $request, Response $response, array $args) 
 
     $factory->createDataSaver()->save($data);
 
-    $route = '/' . $_SESSION['user'];
+    $route = '/guest/' . $_SESSION['user'];
 
     return $response->withRedirect($route);
 });
 
-$app->get('/{name}', function(Request $request, Response $response, array $args) use ($factory) {
+$app->get('/guest/{name}', function(Request $request, Response $response, array $args) use ($factory) {
 
     if (!$_SESSION['loggedin']) {
         return $response->withRedirect('/');
