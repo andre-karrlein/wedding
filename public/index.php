@@ -48,7 +48,6 @@ $app->post('/save', function(Request $request, Response $response, array $args) 
     }
 
     $data = $request->getParsedBody();
-
     $factory->createDataSaver()->save($data);
 
     $route = '/guest/' . $_SESSION['user'];

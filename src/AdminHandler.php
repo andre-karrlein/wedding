@@ -21,6 +21,6 @@ class AdminHandler
 
     private function arrayToString(): string
     {
-        return implode('\n', $this->fileReader->getGuestData());
+        return implode('<br>', $this->fileReader->getGuestData());
     }
 }

@@ -31,7 +31,8 @@ class DataSaver
         $email = filter_var($data['email'], FILTER_SANITIZE_STRING);
         $count = filter_var($data['count'], FILTER_SANITIZE_NUMBER_INT);
 
-        $entry = 'Name: ' . $name . ', E-Mail: ' . $email . ', Anzahl Personen: ' . $count . ';';
+        $entry = 'Eingetragen von: ' . $_SESSION['user'] .', Name: ' . $name;
+        $entry .= ', E-Mail: ' . $email . ', Anzahl Personen: ' . $count . ';';
 
         return $entry;
     }

@@ -14,8 +14,11 @@ class FileWriter
         $this->filePath = $filePath;
     }
 
-    public function writeToFile(string $content): bool
+    public function write(string $content): bool
     {
-        return true;
+        if (file_put_contents($this->filePath, $content, FILE_APPEND) > 0) {
+            return true;
+        }
+        return false;
     }
 }
