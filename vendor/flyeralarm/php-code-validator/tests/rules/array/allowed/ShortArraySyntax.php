@@ -1,4 +1,0 @@
-<?php
-// @expectedPass
-
-$array = [];

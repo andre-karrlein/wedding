@@ -1,6 +1,0 @@
-<?php
-
-// @expectedPass
-
-if (true) {
-}
