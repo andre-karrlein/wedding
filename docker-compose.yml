@@ -5,12 +5,15 @@ services:
             context: .
             dockerfile: docker/nginx/Dockerfile
         image: wedding/nginx
-        ports:
-            - "80:80"
         links:
             - wedding-php
         volumes:
             - ./public:/var/www/code/public
+        networks:
+            - web
+        labels:
+            - "traefik.backend=wedding"
+            - "traefik.frontend.rule=Host:dev.karrlein.com"
 
     wedding-php:
         build:
@@ -18,4 +21,10 @@ services:
             dockerfile: docker/php/Dockerfile
         volumes:
             - .:/var/www/code
+        networks:
+            - web
 
+networks:
+    web:
+        external:
+            name: karrleinbase_webgateway
