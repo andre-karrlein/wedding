@@ -1,0 +1,21 @@
+version: '2'
+services:
+    wedding-nginx:
+        build:
+            context: .
+            dockerfile: docker/nginx/Dockerfile
+        image: wedding/nginx
+        ports:
+            - "80:80"
+        links:
+            - wedding-php
+        volumes:
+            - ./public:/var/www/code/public
+
+    wedding-php:
+        build:
+            context: .
+            dockerfile: docker/php/Dockerfile
+        volumes:
+            - .:/var/www/code
+
