@@ -13,7 +13,7 @@ services:
             - web
         labels:
             - "traefik.backend=wedding"
-            - "traefik.frontend.rule=Host:dev.karrlein.com"
+            - "traefik.frontend.rule=Host:wedding.dev.karrlein.com"
 
     wedding-php:
         build:
