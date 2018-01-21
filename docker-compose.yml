@@ -1,0 +1,30 @@
+version: '2'
+services:
+    wedding-nginx:
+        build:
+            context: .
+            dockerfile: docker/nginx/Dockerfile
+        image: wedding/nginx
+        links:
+            - wedding-php
+        volumes:
+            - ./public:/var/www/code/public
+        networks:
+            - web
+        labels:
+            - "traefik.backend=wedding"
+            - "traefik.frontend.rule=Host:wedding.dev.karrlein.com"
+
+    wedding-php:
+        build:
+            context: .
+            dockerfile: docker/php/Dockerfile
+        volumes:
+            - .:/var/www/code
+        networks:
+            - web
+
+networks:
+    web:
+        external:
+            name: karrleinbase_webgateway
