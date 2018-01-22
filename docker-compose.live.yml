@@ -1,0 +1,8 @@
+version: '2'
+services:
+    wedding-nginx:
+        labels:
+            - "traefik.backend=wedding"
+            - "traefik.docker.network=web"
+            - "traefik.frontend.rule=Host:hochzeit.karrlein.com"
+            - "traefik.enable=true"

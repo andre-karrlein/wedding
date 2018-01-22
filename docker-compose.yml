@@ -11,9 +11,6 @@ services:
             - ./public:/var/www/code/public
         networks:
             - web
-        labels:
-            - "traefik.backend=wedding"
-            - "traefik.frontend.rule=Host:wedding.dev.karrlein.com"
 
     wedding-php:
         build:
