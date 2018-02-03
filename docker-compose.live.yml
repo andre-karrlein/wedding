@@ -4,5 +4,5 @@ services:
         labels:
             - "traefik.backend=wedding"
             - "traefik.docker.network=web"
-            - "traefik.frontend.rule=Host:hochzeit.karrlein.com"
+            - "traefik.frontend.rule=Host:hochzeit.karrlein.com,www.hochzeit.karrlein.com"
             - "traefik.enable=true"
