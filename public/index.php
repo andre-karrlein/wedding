@@ -48,9 +48,10 @@ $app->post('/save', function(Request $request, Response $response, array $args) 
     }
 
     $data = $request->getParsedBody();
+
     $factory->createDataSaver()->save($data);
 
-    $route = '/guest/' . $_SESSION['user'];
+    $route = '/guest/' . $_SESSION['user'] . '?success=true';
 
     return $response->withRedirect($route);
 });
@@ -61,7 +62,19 @@ $app->get('/guest/{name}', function(Request $request, Response $response, array 
         return $response->withRedirect('/');
     }
 
-	return $response->write($factory->createMainPage()->getTemplate($args['name']));
+    $page = $factory->createMainPage()->getTemplate($args['name']);
+
+    $success = $request->getQueryParams()['success'];
+
+    $notification = '';
+
+    if ($success === 'true') {
+        $notification = '<div class="alert alert-success" role="alert">Erfolgreich angemeldet!</div>';
+    }
+
+    $page = str_replace('%notify%', $notification, $page);
+
+	return $response->write($page);
 });
 
 $app->run();
